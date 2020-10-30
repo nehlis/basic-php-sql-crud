@@ -1,1 +1,1 @@
-<script src="scripts/script.js"></script>
+<script src="<?= scripts_url(); ?>/script.js"></script>
