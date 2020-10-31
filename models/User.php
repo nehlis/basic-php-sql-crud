@@ -2,18 +2,16 @@
 
 namespace models;
 
-use interfaces\IModel;
-
 /**
  * Class User
  */
-class User implements IModel
+class User extends Model
 {
     /**
      * Basic db columns.
      * @var array|null[]
      */
-    private static array $data = [
+    private static array $fields = [
         'id'   => null,
         'name' => null,
     ];
@@ -29,19 +27,7 @@ class User implements IModel
      */
     public function __construct(array $user)
     {
-        $this->set($user);
-    }
-    
-    /**
-     * Set values if they exist in columns field.
-     * @param array $values
-     */
-    public function set(array $values): void
-    {
-        foreach (self::$data as $key => $data) {
-            if (array_key_exists($key, $values)) {
-                self::$data[$key] = $values[$key];
-            }
-        }
+        parent::set(self::$fields);
+        $this->init($user);
     }
 }

@@ -25,6 +25,14 @@ class UserController implements IController
     }
     
     /**
+     * @return array
+     */
+    public function index(): array
+    {
+        return $this->database->index(User::$table);
+    }
+    
+    /**
      * @param array $model
      * @return User
      */
@@ -40,7 +48,7 @@ class UserController implements IController
      */
     public function get(int $id): User
     {
-        $user = $this->database->getById(User::$table, $id);
+        $user = $this->database->get(User::$table, $id);
         
         return new User($user);
     }
@@ -62,6 +70,6 @@ class UserController implements IController
      */
     public function delete(int $id): void
     {
-        $this->database->deleteById(User::$table, $id);
+        $this->database->delete(User::$table, $id);
     }
 }

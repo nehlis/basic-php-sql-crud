@@ -21,14 +21,14 @@ class Database
     private const BD_USER = 'root';
     
     /**
-     * Datbase password.
+     * Datàbase password.
      */
-    private const DB_PASS = 'root';
+    private const DB_PASS = '';
     
     /**
      * Database name.
      */
-    private const DB_NAME = 'iproject';
+    private const DB_NAME = 'crud';
     
     /**
      * @var mysqli
@@ -53,14 +53,15 @@ class Database
     
     /**
      * @param string $query
+     * @param bool $delete
      * @param bool $assoc
      * @return array|null
      */
-    public function query(string $query, bool $assoc = true): ?array
+    public function query(string $query, bool $delete = false, bool $assoc = true): ?array
     {
-        try {
-            $result = $this->connection->query($query);
-        } catch (Exception $exception) {
+        $result = $this->connection->query($query);
+        
+        if ($delete) {
             return null;
         }
         
@@ -72,18 +73,27 @@ class Database
      * @param int $id
      * @return array
      */
-    public function getById(string $table, int $id): array
+    public function get(string $table, int $id): array
     {
-        return $this->query("GET * FROM {$table} WHERE id = {$id}")[0];
+        return $this->query("SELECT * FROM {$table} WHERE `id` = {$id}");
+    }
+    
+    /**
+     * @param string $table
+     * @return array
+     */
+    public function index(string $table): array
+    {
+        return $this->query("SELECT * FROM {$table}");
     }
     
     /**
      * @param string $table
      * @param int $id
-     * @return array
+     * @return void
      */
-    public function deleteById(string $table, int $id): array
+    public function delete(string $table, int $id): void
     {
-        return $this->query("DELETE * FROM {$table} WHERE id = {$id}")[0];
+        $this->query("DELETE FROM {$table} WHERE `id` = {$id}", true);
     }
 }

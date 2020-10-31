@@ -8,6 +8,12 @@ namespace interfaces;
 interface IController
 {
     /**
+     * Returns a list of the resource.
+     * @return array
+     */
+    public function index(): array;
+    
+    /**
      * Creates an entry for the model.
      * @param array $model
      * @return IModel
