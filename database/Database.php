@@ -1,13 +1,28 @@
 <?php
 
+/**
+ * Class Database
+ */
 class Database
 {
     /**
-     * Database constants (local).
+     * Database host.
      */
     private const DB_HOST = '';
+    
+    /**
+     * Database user.
+     */
     private const BD_USER = '';
+    
+    /**
+     * Datbase password.
+     */
     private const DB_PASS = '';
+    
+    /**
+     * Database name.
+     */
     private const DB_NAME = '';
     
     /**
@@ -36,7 +51,7 @@ class Database
      * @param bool $asArray
      * @return array|null
      */
-    private function query(string $query, bool $asArray = true): ?array
+    public function query(string $query, bool $asArray = true): ?array
     {
         try {
             $result = $this->connection->query($query);
@@ -45,5 +60,15 @@ class Database
         }
     
         return $asArray ? mysqli_fetch_array($result) : mysqli_fetch_assoc($result);
+    }
+    
+    /**
+     * @param string $table
+     * @param int $id
+     * @return array
+     */
+    public function getFirstWithId(string $table, int $id): array
+    {
+        return $this->query("GET * FROM {$table} WHERE id = {$id}")[0];
     }
 }
