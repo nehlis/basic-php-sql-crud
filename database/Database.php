@@ -12,22 +12,22 @@ class Database
     /**
      * Database host.
      */
-    private const DB_HOST = '';
+    private const DB_HOST = 'localhost';
     
     /**
      * Database user.
      */
-    private const BD_USER = '';
+    private const BD_USER = 'root';
     
     /**
      * Datbase password.
      */
-    private const DB_PASS = '';
+    private const DB_PASS = 'root';
     
     /**
      * Database name.
      */
-    private const DB_NAME = '';
+    private const DB_NAME = 'iproject';
     
     /**
      * @var mysqli
