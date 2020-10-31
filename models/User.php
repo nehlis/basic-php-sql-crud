@@ -10,9 +10,14 @@ use interfaces\IModel;
 class User implements IModel
 {
     /**
-     * @var int|mixed
+     * @var int
      */
     public int $id;
+    
+    /**
+     * @var string
+     */
+    public static string $table = 'users';
     
     /**
      * User constructor.

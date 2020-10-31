@@ -18,11 +18,6 @@ class UserController implements IController
     private Database $database;
     
     /**
-     * @var string
-     */
-    private string $table = 'users';
-    
-    /**
      * UserController constructor.
      */
     public function __construct()
@@ -46,7 +41,7 @@ class UserController implements IController
      */
     public function get(int $id): User
     {
-        $user = $this->database->getById($this->table, $id);
+        $user = $this->database->getById(User::$table, $id);
         
         return new User($user);
     }
@@ -68,6 +63,6 @@ class UserController implements IController
      */
     public function delete(int $id): void
     {
-        $this->database->deleteById($this->table, $id);
+        $this->database->deleteById(User::$table, $id);
     }
 }
