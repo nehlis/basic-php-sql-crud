@@ -4,7 +4,6 @@ namespace controllers;
 
 use database\Database;
 use interfaces\IController;
-use interfaces\IModel;
 use models\User;
 
 /**
@@ -27,9 +26,9 @@ class UserController implements IController
     
     /**
      * @param array $model
-     * @return IModel
+     * @return User
      */
-    public function create(array $model): IModel
+    public function create(array $model): User
     {
         // TODO: Implement create() method.
     }
