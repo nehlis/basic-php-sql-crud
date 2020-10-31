@@ -1,7 +1,11 @@
 <?php
 
+namespace controllers;
+
+use database\Database;
 use interfaces\IController;
 use interfaces\IModel;
+use models\User;
 
 /**
  * Class UserController
