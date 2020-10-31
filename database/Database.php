@@ -2,6 +2,7 @@
 
 namespace database;
 
+use Exception;
 use mysqli;
 
 /**
@@ -43,7 +44,7 @@ class Database
     }
     
     /**
-     *
+     * Connect to the database using the credentials.
      */
     private function connect(): void
     {
