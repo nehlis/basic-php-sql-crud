@@ -27,7 +27,7 @@ class UserController implements IController
      */
     public function __construct()
     {
-        $db = new Database();
+        $this->database = new Database();
     }
     
     /**
