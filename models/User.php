@@ -39,7 +39,7 @@ class User implements IModel
     public function set(array $values): void
     {
         foreach ($this->columns as $key => $column) {
-            if (array_search($key, $values)) {
+            if (array_key_exists($key, $values)) {
                 $this->columns[$column] = $values[$key];
             }
         }
