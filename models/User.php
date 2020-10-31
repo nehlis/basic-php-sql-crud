@@ -13,7 +13,7 @@ class User implements IModel
      * Basic db columns.
      * @var array|null[]
      */
-    private array $columns = [
+    private static array $data = [
         'id'   => null,
         'name' => null,
     ];
@@ -38,9 +38,9 @@ class User implements IModel
      */
     public function set(array $values): void
     {
-        foreach ($this->columns as $key => $column) {
+        foreach (self::$data as $key => $data) {
             if (array_key_exists($key, $values)) {
-                $this->columns[$column] = $values[$key];
+                self::$data[$key] = $values[$key];
             }
         }
     }
