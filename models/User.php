@@ -10,9 +10,13 @@ use interfaces\IModel;
 class User implements IModel
 {
     /**
-     * @var int
+     * Basic db columns.
+     * @var array|null[]
      */
-    public int $id;
+    private array $columns = [
+        'id'   => null,
+        'name' => null,
+    ];
     
     /**
      * @var string
@@ -28,8 +32,16 @@ class User implements IModel
         $this->set($user);
     }
     
+    /**
+     * Set values if they exist in columns field.
+     * @param array $values
+     */
     public function set(array $values): void
     {
-        $this->id = $values['id'];
+        foreach ($this->columns as $key => $column) {
+            if (array_search($key, $values)) {
+                $this->columns[$column] = $values[$key];
+            }
+        }
     }
 }
