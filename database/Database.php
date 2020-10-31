@@ -48,18 +48,18 @@ class Database
     
     /**
      * @param string $query
-     * @param bool $asArray
+     * @param bool $assoc
      * @return array|null
      */
-    public function query(string $query, bool $asArray = true): ?array
+    public function query(string $query, bool $assoc = true): ?array
     {
         try {
             $result = $this->connection->query($query);
         } catch (Exception $exception) {
             return null;
         }
-    
-        return $asArray ? mysqli_fetch_array($result) : mysqli_fetch_assoc($result);
+        
+        return $assoc ? mysqli_fetch_assoc($result) : mysqli_fetch_array($result);
     }
     
     /**
