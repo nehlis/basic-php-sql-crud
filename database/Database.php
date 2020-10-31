@@ -67,8 +67,18 @@ class Database
      * @param int $id
      * @return array
      */
-    public function getFirstWithId(string $table, int $id): array
+    public function getById(string $table, int $id): array
     {
         return $this->query("GET * FROM {$table} WHERE id = {$id}")[0];
+    }
+    
+    /**
+     * @param string $table
+     * @param int $id
+     * @return array
+     */
+    public function deleteById(string $table, int $id): array
+    {
+        return $this->query("DELETE * FROM {$table} WHERE id = {$id}")[0];
     }
 }

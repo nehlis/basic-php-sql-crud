@@ -8,6 +8,13 @@ namespace interfaces;
 interface IController
 {
     /**
+     * Creates an entry for the model.
+     * @param array $model
+     * @return IModel
+     */
+    public function create(array $model): IModel;
+    
+    /**
      * Gets the selected ID from the model.
      * @param int $id
      * @return IModel

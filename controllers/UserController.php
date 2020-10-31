@@ -1,6 +1,7 @@
 <?php
 
 use interfaces\IController;
+use interfaces\IModel;
 
 /**
  * Class UserController
@@ -26,13 +27,22 @@ class UserController implements IController
     }
     
     /**
+     * @param array $model
+     * @return IModel
+     */
+    public function create(array $model): IModel
+    {
+        // TODO: Implement create() method.
+    }
+    
+    /**
      * Returns a single user.
      * @param int $id
      * @return User
      */
     public function get(int $id): User
     {
-        $user = $this->db->getFirstWithId($this->table, $id);
+        $user = $this->db->getById($this->table, $id);
         
         return new User($user);
     }
@@ -54,6 +64,6 @@ class UserController implements IController
      */
     public function delete(int $id): void
     {
-        // TODO: Implement delete() method.
+        $this->db->deleteById($this->table, $id);
     }
 }
