@@ -1,8 +1,10 @@
 <?php
 
+// Autoload all classes that are not in same namespace.
 spl_autoload_register(fn($class_name) => include "{$class_name}.php");
 
 /**
+ * Return stylesheets map URL.
  * @return string
  */
 function styles_url(): string
@@ -11,6 +13,7 @@ function styles_url(): string
 }
 
 /**
+ * Returns (java)scripts folder URL.
  * @return string
  */
 function scripts_url(): string

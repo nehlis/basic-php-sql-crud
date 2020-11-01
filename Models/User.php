@@ -21,6 +21,7 @@ class User extends Model
     ];
     
     /**
+     * Database column that should be selected.
      * @var string
      */
     public static string $table = 'users';

@@ -25,6 +25,7 @@ class UserController implements IController
     }
     
     /**
+     * Returns all users.
      * @return array
      */
     public function index(): array
@@ -33,6 +34,7 @@ class UserController implements IController
     }
     
     /**
+     * Creates a User.
      * @param array $args
      * @return void
      */

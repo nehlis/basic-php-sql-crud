@@ -52,11 +52,12 @@ class Database
     }
     
     /**
+     * Basic query method (get, index, delete).
      * @param string $query
      * @param bool $delete
      * @return array|null
      */
-    public function simpleQuery(string $query, bool $delete = false): ?array
+    private function simpleQuery(string $query, bool $delete = false): ?array
     {
         $this->connect();
         
@@ -68,11 +69,12 @@ class Database
     }
     
     /**
+     * Insert into query method with it's functionality.
      * @param array $args
      * @param IModel $model
      * @return void
      */
-    public function insertQuery(array $args, IModel $model): void
+    private function insertQuery(array $args, IModel $model): void
     {
         $args = $this->merge($args, $model);
         $args = $this->formatArguments($args);
@@ -88,12 +90,13 @@ class Database
     }
     
     /**
+     * Update query method.
      * @param string $table
      * @param array $args
      * @param int $id
      * @return array
      */
-    public function updateQuery(string $table, array $args, int $id): array
+    private function updateQuery(string $table, array $args, int $id): array
     {
         $statments = [];
         
@@ -103,7 +106,7 @@ class Database
         
         $formattedStatements = implode(',', $statments);
         
-        $result = $this->connection->query("UPDATE `{$table}` SET {$formattedStatements} WHERE ID = {$id}");
+        $result = $this->connection->query("UPDATE `{$table}` SET {$formattedStatements} WHERE `id` = {$id}");
         
         $this->close();
         
@@ -111,6 +114,7 @@ class Database
     }
     
     /**
+     * Create method for controllers.
      * @param array $args
      * @param IModel $model
      * @return void
@@ -121,6 +125,7 @@ class Database
     }
     
     /**
+     * Get method for controllers
      * @param string $table
      * @param int $id
      * @return array
@@ -131,6 +136,7 @@ class Database
     }
     
     /**
+     * Update method for controllers.
      * @param string $table
      * @param array $args
      * @param int $id
@@ -142,6 +148,7 @@ class Database
     }
     
     /**
+     * Index method for controllers.
      * @param string $table
      * @return array
      */
@@ -151,6 +158,7 @@ class Database
     }
     
     /**
+     * Delete method for controllers.
      * @param string $table
      * @param int $id
      * @return void
@@ -161,6 +169,7 @@ class Database
     }
     
     /**
+     * Merge the basic fields from the model with the inputted data.
      * @param array $args
      * @param IModel $model
      * @return array
@@ -178,6 +187,11 @@ class Database
         return $newArgs;
     }
     
+    /**
+     * Formats the arguments for SQL queries.
+     * @param array $args
+     * @return array
+     */
     public function formatArguments(array $args): array
     {
         $keys   = [];

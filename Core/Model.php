@@ -10,6 +10,7 @@ abstract class Model implements IModel
     public static string $table;
     
     /**
+     * Initialises all the values that are passed to the user (if they exist).
      * @param array $values
      */
     function init(array $values): void
@@ -26,6 +27,7 @@ abstract class Model implements IModel
     }
     
     /**
+     * Set's the fields from the model.
      * @param array $fields
      */
     public static function set(array $fields): void
@@ -34,6 +36,7 @@ abstract class Model implements IModel
     }
     
     /**
+     * Returns all the fields from the model.
      * @return array
      */
     public static function get(): array

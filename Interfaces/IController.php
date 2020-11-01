@@ -36,6 +36,7 @@ interface IController
     public function put(array $args, int $id): IModel;
     
     /**
+     * Removes a certain index from the model.
      * @param int $id
      */
     public function delete(int $id): void;
