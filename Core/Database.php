@@ -196,12 +196,12 @@ class Database
     {
         $keys   = [];
         $values = [];
-    
+        
         foreach (array_keys($args) as $key) {
             $newKey = "`{$key}`";
             array_push($keys, $newKey);
         }
-    
+        
         foreach (array_values($args) as $value) {
             if ($value === 'NULL') {
                 array_push($values, $value);
