@@ -114,7 +114,7 @@ class Database
     }
     
     /**
-     * Create method for controllers.
+     * Create method for Controllers.
      * @param array $args
      * @param IModel $model
      * @return void
@@ -125,7 +125,7 @@ class Database
     }
     
     /**
-     * Get method for controllers
+     * Get method for Controllers
      * @param string $table
      * @param int $id
      * @return array
@@ -136,7 +136,7 @@ class Database
     }
     
     /**
-     * Update method for controllers.
+     * Update method for Controllers.
      * @param string $table
      * @param array $args
      * @param int $id
@@ -148,7 +148,7 @@ class Database
     }
     
     /**
-     * Index method for controllers.
+     * Index method for Controllers.
      * @param string $table
      * @return array
      */
@@ -158,7 +158,7 @@ class Database
     }
     
     /**
-     * Delete method for controllers.
+     * Delete method for Controllers.
      * @param string $table
      * @param int $id
      * @return void

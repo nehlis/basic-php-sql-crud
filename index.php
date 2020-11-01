@@ -1,6 +1,6 @@
 <?php
 
-use controllers\UserController;
+use Controllers\UserController;
 
 require_once 'functions.php';
 
