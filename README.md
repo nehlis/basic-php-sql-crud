@@ -1,8 +1,26 @@
-# I-Project
+# Basic object oriented PHP crud framework. Works with SQL.
 
-## Hoe te gebruiken.
+## How to use.
 #### Controllers
-Alle controllers zijn er voor bedoelt om records toe te voegen, aan te passen, op te roepen of te verwijderen. De controllers moeten altijd de "IController" interface implementeren.
-
+Controllers should always implement IControllers and should be located in the Controller directory. See the UserController.php for CRUD examples.
 #### Models
-Alle models zijn er voor bedoelt om op een cleane manier alle data uit een database tabel op te slaan zodat dit foutloos gaat. De models moeten altijd de "IModel" interface implementeren.
+All models should extend the abstract class 'Model'. These are the fields that are nesessary for basic Controller usage.
+```php
+     /**
+     * Basic db columns ('NULL' necessary).
+     * @var array|null[]
+     */
+    public static array $fields = [
+        'id'        => 'NULL',
+        'name'      => 'NULL',
+        'email'     => 'NULL',
+        'last_name' => 'NULL',
+    ];
+    
+    /**
+     * Database column that should be selected.
+     * @var string
+     */
+    public static string $table = 'users';
+```
+

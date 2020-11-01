@@ -10,7 +10,7 @@ use Core\Model;
 class User extends Model
 {
     /**
-     * Basic db columns.
+     * Basic db columns ('NULL' necessary).
      * @var array|null[]
      */
     public static array $fields = [
