@@ -36,36 +36,14 @@ class Database
     private mysqli $connection;
     
     /**
-     * Connect to the database using the credentials.
+     * Create method for Controllers.
+     * @param array $args
+     * @param IModel $model
+     * @return void
      */
-    private function connect(): void
+    public function create(array $args, IModel $model): void
     {
-        $this->connection = new mysqli(self::DB_HOST, self::BD_USER, self::DB_PASS, self::DB_NAME);
-    }
-    
-    /**
-     * Closes the database connection.
-     */
-    private function close(): void
-    {
-        $this->connection->close();
-    }
-    
-    /**
-     * Basic query method (get, index, delete).
-     * @param string $query
-     * @param bool $delete
-     * @return array|null
-     */
-    private function simpleQuery(string $query, bool $delete = false): ?array
-    {
-        $this->connect();
-        
-        $result = $this->connection->query($query);
-        
-        $this->close();
-        
-        return !$delete ? mysqli_fetch_assoc($result) : null;
+        $this->insertQuery($args, $model);
     }
     
     /**
@@ -87,85 +65,6 @@ class Database
         $this->connection->query("INSERT INTO `{$model::$table}` ({$keys}) VALUES ({$values});");
         
         $this->close();
-    }
-    
-    /**
-     * Update query method.
-     * @param string $table
-     * @param array $args
-     * @param int $id
-     * @return array
-     */
-    private function updateQuery(string $table, array $args, int $id): array
-    {
-        $statments = [];
-        
-        foreach ($args as $key => $arg) {
-            array_push($updateStatements, "{$key} = {$arg}");
-        }
-        
-        $formattedStatements = implode(',', $statments);
-        
-        $result = $this->connection->query("UPDATE `{$table}` SET {$formattedStatements} WHERE `id` = {$id}");
-        
-        $this->close();
-        
-        return mysqli_fetch_assoc($result);
-    }
-    
-    /**
-     * Create method for Controllers.
-     * @param array $args
-     * @param IModel $model
-     * @return void
-     */
-    public function create(array $args, IModel $model): void
-    {
-        $this->insertQuery($args, $model);
-    }
-    
-    /**
-     * Get method for Controllers
-     * @param string $table
-     * @param int $id
-     * @return array
-     */
-    public function get(string $table, int $id): array
-    {
-        return $this->simpleQuery("SELECT * FROM {$table} WHERE `id` = {$id}");
-    }
-    
-    /**
-     * Update method for Controllers.
-     * @param string $table
-     * @param array $args
-     * @param int $id
-     * @return array
-     */
-    public function update(string $table, array $args, int $id): array
-    {
-        return $this->updateQuery($table, $args, $id);
-    }
-    
-    /**
-     * Index method for Controllers.
-     * @param string $table
-     * @return array
-     */
-    public function index(string $table): array
-    {
-        return $this->simpleQuery("SELECT * FROM {$table}");
-    }
-    
-    /**
-     * Delete method for Controllers.
-     * @param string $table
-     * @param int $id
-     * @return void
-     */
-    public function delete(string $table, int $id): void
-    {
-        $this->simpleQuery("DELETE FROM {$table} WHERE `id` = {$id}", true);
     }
     
     /**
@@ -213,5 +112,106 @@ class Database
         }
         
         return array_combine($keys, $values);
+    }
+    
+    /**
+     * Connect to the database using the credentials.
+     */
+    private function connect(): void
+    {
+        $this->connection = new mysqli(self::DB_HOST, self::BD_USER, self::DB_PASS, self::DB_NAME);
+    }
+    
+    /**
+     * Closes the database connection.
+     */
+    private function close(): void
+    {
+        $this->connection->close();
+    }
+    
+    /**
+     * Get method for Controllers
+     * @param string $table
+     * @param int $id
+     * @return array
+     */
+    public function get(string $table, int $id): array
+    {
+        return $this->simpleQuery("SELECT * FROM {$table} WHERE `id` = {$id}");
+    }
+    
+    /**
+     * Basic query method (get, index, delete).
+     * @param string $query
+     * @param bool $delete
+     * @return array|null
+     */
+    private function simpleQuery(string $query, bool $delete = false): ?array
+    {
+        $this->connect();
+        
+        $result = $this->connection->query($query);
+        
+        $this->close();
+        
+        return !$delete ? mysqli_fetch_assoc($result) : null;
+    }
+    
+    /**
+     * Update method for Controllers.
+     * @param string $table
+     * @param array $args
+     * @param int $id
+     * @return array
+     */
+    public function update(string $table, array $args, int $id): array
+    {
+        return $this->updateQuery($table, $args, $id);
+    }
+    
+    /**
+     * Update query method.
+     * @param string $table
+     * @param array $args
+     * @param int $id
+     * @return array
+     */
+    private function updateQuery(string $table, array $args, int $id): array
+    {
+        $statments = [];
+        
+        foreach ($args as $key => $arg) {
+            array_push($updateStatements, "{$key} = {$arg}");
+        }
+        
+        $formattedStatements = implode(',', $statments);
+        
+        $result = $this->connection->query("UPDATE `{$table}` SET {$formattedStatements} WHERE `id` = {$id}");
+        
+        $this->close();
+        
+        return mysqli_fetch_assoc($result);
+    }
+    
+    /**
+     * Index method for Controllers.
+     * @param string $table
+     * @return array
+     */
+    public function index(string $table): array
+    {
+        return $this->simpleQuery("SELECT * FROM {$table}");
+    }
+    
+    /**
+     * Delete method for Controllers.
+     * @param string $table
+     * @param int $id
+     * @return void
+     */
+    public function delete(string $table, int $id): void
+    {
+        $this->simpleQuery("DELETE FROM {$table} WHERE `id` = {$id}", true);
     }
 }

@@ -10,23 +10,6 @@ abstract class Model implements IModel
     public static string $table;
     
     /**
-     * Initialises all the values that are passed to the user (if they exist).
-     * @param array $values
-     */
-    function init(array $values): void
-    {
-        if (!self::$fields) {
-            return;
-        }
-        
-        foreach (self::$fields as $key => $field) {
-            if (array_key_exists($key, $values)) {
-                self::$fields[$key] = $values[$key];
-            }
-        }
-    }
-    
-    /**
      * Set's the fields from the model.
      * @param array $fields
      */
@@ -42,5 +25,22 @@ abstract class Model implements IModel
     public static function get(): array
     {
         return self::$fields;
+    }
+    
+    /**
+     * Initialises all the values that are passed to the user (if they exist).
+     * @param array $values
+     */
+    function init(array $values): void
+    {
+        if (!self::$fields) {
+            return;
+        }
+        
+        foreach (self::$fields as $key => $field) {
+            if (array_key_exists($key, $values)) {
+                self::$fields[$key] = $values[$key];
+            }
+        }
     }
 }
