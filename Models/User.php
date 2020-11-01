@@ -1,6 +1,8 @@
 <?php
 
-namespace models;
+namespace Models;
+
+use Core\Model;
 
 /**
  * Class User
@@ -11,9 +13,11 @@ class User extends Model
      * Basic db columns.
      * @var array|null[]
      */
-    private static array $fields = [
-        'id'   => null,
-        'name' => null,
+    public static array $fields = [
+        'id'        => 'NULL',
+        'name'      => 'NULL',
+        'email'     => 'NULL',
+        'last_name' => 'NULL',
     ];
     
     /**
@@ -25,9 +29,12 @@ class User extends Model
      * User constructor.
      * @param array $user
      */
-    public function __construct(array $user)
+    public function __construct(array $user = [])
     {
         parent::set(self::$fields);
-        $this->init($user);
+        
+        if (!empty($user)) {
+            $this->init($user);
+        }
     }
 }

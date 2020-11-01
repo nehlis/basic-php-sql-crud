@@ -14,7 +14,11 @@ require_once 'functions.php';
 
 $uc = new UserController();
 
-$uc->delete(2);
+$uc->create([
+    'name'      => 'test',
+    'email'     => 'testEmail',
+    'last_name' => 'testLastName',
+]);
 
 ?>
 

@@ -2,9 +2,9 @@
 
 namespace controllers;
 
-use database\Database;
-use interfaces\IController;
-use models\User;
+use Core\Database;
+use Interfaces\IController;
+use Models\User;
 
 /**
  * Class UserController
@@ -33,12 +33,12 @@ class UserController implements IController
     }
     
     /**
-     * @param array $model
-     * @return User
+     * @param array $args
+     * @return void
      */
-    public function create(array $model): User
+    public function create(array $args): void
     {
-        // TODO: Implement create() method.
+        $this->database->create($args, new User());
     }
     
     /**
@@ -55,12 +55,17 @@ class UserController implements IController
     
     /**
      * Edits a single user.
+     * @param array $args
      * @param int $id
      * @return mixed
      */
-    public function put(int $id): User
+    public function put(array $args, int $id): User
     {
-        // TODO: Implement put() method.
+        $this->database->update(User::$table, $args, $id);
+        
+        $user = $this->database->get(User::$table, $id);
+        
+        return new User($user);
     }
     
     /**

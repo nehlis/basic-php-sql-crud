@@ -1,6 +1,6 @@
 <?php
 
-namespace interfaces;
+namespace Interfaces;
 
 /**
  * Interface IController
@@ -16,9 +16,9 @@ interface IController
     /**
      * Creates an entry for the model.
      * @param array $model
-     * @return IModel
+     * @return void
      */
-    public function create(array $model): IModel;
+    public function create(array $model): void;
     
     /**
      * Gets the selected ID from the model.
@@ -29,10 +29,11 @@ interface IController
     
     /**
      * Put's the selected ID from the model.
+     * @param array $args
      * @param int $id
      * @return IModel
      */
-    public function put(int $id): IModel;
+    public function put(array $args, int $id): IModel;
     
     /**
      * @param int $id

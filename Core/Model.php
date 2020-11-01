@@ -1,12 +1,13 @@
 <?php
 
-namespace models;
+namespace Core;
 
-use interfaces\IModel;
+use Interfaces\IModel;
 
 abstract class Model implements IModel
 {
-    private static array $fields;
+    public static array $fields;
+    public static string $table;
     
     /**
      * @param array $values

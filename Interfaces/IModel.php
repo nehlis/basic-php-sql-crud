@@ -1,10 +1,10 @@
 <?php
 
-namespace interfaces;
+namespace Interfaces;
 
 /**
  * Interface IModel
- * @package interfaces
+ * @package Interfaces
  */
 interface IModel
 {
