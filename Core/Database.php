@@ -167,30 +167,18 @@ class Database
      */
     public function update(string $table, array $args, int $id): array
     {
-        return $this->updateQuery($table, $args, $id);
-    }
-    
-    /**
-     * Update query method.
-     * @param string $table
-     * @param array $args
-     * @param int $id
-     * @return array
-     */
-    private function updateQuery(string $table, array $args, int $id): array
-    {
         $statments = [];
-        
+    
         foreach ($args as $key => $arg) {
             array_push($updateStatements, "{$key} = {$arg}");
         }
-        
+    
         $formattedStatements = implode(',', $statments);
-        
+    
         $result = $this->connection->query("UPDATE `{$table}` SET {$formattedStatements} WHERE `id` = {$id}");
-        
+    
         $this->close();
-        
+    
         return mysqli_fetch_assoc($result);
     }
     

@@ -1,7 +1,7 @@
 <?php
 
 // Autoload all classes that are not in same namespace.
-spl_autoload_register(fn($class_name) => include "{$class_name}.php");
+spl_autoload_register(fn($class) => include "{$class}.php");
 
 /**
  * Return stylesheets map URL.

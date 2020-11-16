@@ -10,6 +10,7 @@ require_once 'functions.php';
 <html lang="nl">
 <?php require_once 'layouts/head.php'; ?>
 <body>
+
 <?php
 
 $uc = new UserController();
